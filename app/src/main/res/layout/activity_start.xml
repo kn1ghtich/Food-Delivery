@@ -46,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_user_login_btn"
+        android:id="@+id/go_main_btn"
         android:layout_width="160dp"
         android:layout_height="65dp"
         android:layout_marginBottom="32dp"

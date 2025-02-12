@@ -9,12 +9,25 @@ import com.example.fooddelivery.DetailsActivity
 import com.example.fooddelivery.databinding.FragmentHomeBinding
 import com.example.fooddelivery.databinding.HomeFoodItemBinding
 import com.example.fooddelivery.models.PopularModel
+import com.example.fooddelivery.models.SharedModel
 
-class PopularAdapter(val context: Context, var   list: ArrayList<PopularModel>) : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
+class PopularAdapter(
+    val context: Context,
+    var list: ArrayList<PopularModel>
+) : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
+
+    private lateinit var sharedModel : SharedModel
+
+    fun setSharedModel(videoModel: SharedModel) {
+        sharedModel = videoModel
+    }
+
     class PopularViewHolder(binding : HomeFoodItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val foodImage = binding.homeFoodImage
         val foodName = binding.homeFoodName
         val foodPrice = binding.homeFoodPrice
+
+        val addBtn = binding.homeFoodBtn
 
         val item = binding.root
 
@@ -38,7 +51,7 @@ class PopularAdapter(val context: Context, var   list: ArrayList<PopularModel>) 
         val listModel = list[position]
         listModel.getFoodImage()?.let {holder.foodImage.setImageResource(it)}
         holder.foodName.text = listModel.getFoodName()
-        holder.foodPrice.text = listModel.getFoodPrice()
+        holder.foodPrice.text = listModel.getFoodPrice().toString()
 
         holder.item.setOnClickListener {
             val intent = Intent(context, DetailsActivity::class.java)
@@ -49,6 +62,15 @@ class PopularAdapter(val context: Context, var   list: ArrayList<PopularModel>) 
 
         }
 
+        holder.addBtn.setOnClickListener {
+            if (sharedModel.inList(listModel)) {
+                sharedModel.deleteFromCart(listModel)
+                holder.addBtn.setText("Add to Cart")
+            } else {
+                sharedModel.addToCart(listModel)
+                holder.addBtn.setText("Delete From Cart")
+            }
+        }
 
      }
 }

@@ -75,18 +75,5 @@
         app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="240dp"
-        android:layout_height="60dp"
-        android:background="@drawable/green_btn"
-        android:text="Add to Cart"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/short_description_of_food" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

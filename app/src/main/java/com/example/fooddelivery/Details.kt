@@ -1,37 +1,39 @@
 package com.example.fooddelivery
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.fooddelivery.databinding.ActivitySignUpUserBinding
+import com.example.fooddelivery.databinding.ActivityDetails2Binding
+import com.example.fooddelivery.fragment.SuccessPayment
 
-class SignUpUserActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySignUpUserBinding
+class Details : AppCompatActivity() {
+    private lateinit var binding : ActivityDetails2Binding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_sign_up_user)
+        setContentView(R.layout.activity_details2)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        binding = ActivitySignUpUserBinding.inflate(layoutInflater)
+        binding = ActivityDetails2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.goLoginUserPage.setOnClickListener {
-            val intent = Intent(this, LoginUserActivity::class.java)
-            startActivity(intent)
+        binding.backStack.setOnClickListener {
+            onBackPressed()
         }
 
-        binding.button3.setOnClickListener {
-            val intent = Intent(this, LocationActivity::class.java)
-            startActivity(intent)
-            finish()
+        binding.placeMyOrder.setOnClickListener {
+            val bottomFragment = SuccessPayment()
+            bottomFragment.show(supportFragmentManager, "Test")
         }
+
+        val totalPrice = intent.getStringExtra("totalPrice")
+        binding.price.text = totalPrice
     }
 }

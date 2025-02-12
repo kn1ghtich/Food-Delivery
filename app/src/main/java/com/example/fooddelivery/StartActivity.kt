@@ -24,8 +24,8 @@ class StartActivity : AppCompatActivity() {
         binding = ActivityStartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.goUserLoginBtn.setOnClickListener {
-            val intent = Intent(this@StartActivity, LoginUserActivity::class.java)
+        binding.goMainBtn.setOnClickListener {
+            val intent = Intent(this@StartActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
